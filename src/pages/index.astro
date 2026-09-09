@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SystemExplorer from '../components/SystemExplorer.astro';
+import Footer from '../components/Footer.astro';
+import Project from '../components/Project.astro';
+import Icon from '../components/Icon.astro';
+import { person, projects, skills, experience, education } from '../content/portfolio';
+---
+
+<Layout>
+  <Header />
+  <main id="inhalt">
+    <section class="hero container" id="start" aria-labelledby="hero-title">
+      <div class="hero-topline">
+        <span>Systemintegration & Entwicklung</span>
+        <span>
+          <Icon name="pin" /> Berlin, Deutschland
+        </span>
+      </div>
+      <h1 class="hero-name" id="hero-title">
+        Ruben Schultka<span aria-hidden="true">↗</span>
+      </h1>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="hero-role">
+            Angehender
+            <br />
+            Fachinformatiker für
+            <br />
+            Systemintegration.
+          </p>
+          <p class="hero-description">
+            Ich entwickle Software, verwalte Server und arbeite dort, wo beides zusammenkommt.
+          </p>
+          <a class="button" href="#projekte">
+            Meine Projekte entdecken <Icon />
+          </a>
+        </div>
+        <SystemExplorer />
+      </div>
+      <div class="hero-bottom">
+        <p>Praktische Erfahrung. Echte Systeme.</p>
+        <a href="#projekte">
+          Ein Blick in meine Arbeit <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+    </section>
+
+    <section
+      class="projects-section container section-space"
+      id="projekte"
+      aria-labelledby="projects-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Ausgewählte Projekte</p>
+          <h2 id="projects-title">
+            Nicht nur Code.
+            <br />
+            Auch das System dahinter.
+          </h2>
+        </div>
+        <p>
+          Vom Code bis zum Serverbetrieb.
+          <br />
+          Zwei Projekte, in denen ich mitarbeite und lerne.
+        </p>
+      </div>
+      {projects.map((project, i) => (
+        <Project project={project} featured={i === 0} />
+      ))}
+    </section>
+
+    <section class="profile-section" id="profil" aria-labelledby="profile-title">
+      <div class="container section-space">
+        <div class="profile-intro">
+          <div>
+            <p class="section-kicker">Über mich</p>
+            <h2 id="profile-title">
+              Mich interessiert,
+              <br />
+              wie alles zusammenspielt.
+            </h2>
+          </div>
+          <div class="profile-copy">
+            <p>
+              Mein berufliches Ziel ist die Fachinformatik für Systemintegration. In meinen
+              Projekten verbinde ich Programmierung mit praktischer Arbeit an Servern und
+              Infrastruktur.
+            </p>
+            <p>
+              Ob eine Weboberfläche in Vue.js oder der Zugriff auf einen Rack-Server über SSH: Ich
+              beschäftige mich mit der Software und den Systemen dahinter.
+            </p>
+            <div class="personal-note">
+              <span>Abseits der Technik</span>
+              <p>Programmieren, Gaming und Rudern.</p>
+            </div>
+          </div>
+        </div>
+        <div class="skills-heading">
+          <h3>Mein technisches Werkzeug</h3>
+          <span>Kenntnisse aus Projekten & Praxis</span>
+        </div>
+        <div class="skills-grid">
+          {skills.map((group) => (
+            <section class="skill-group">
+              <h4>{group.title}</h4>
+              <p>{group.description}</p>
+              <ul>
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+        <div class="language-note">
+          <span>Sprachen</span>
+          <p>
+            Englisch <span>Obere Mittelstufe</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="container section-space journey-section"
+      id="werdegang"
+      aria-labelledby="journey-title"
+    >
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Schule, Einblicke, nächste Schritte</p>
+          <h2 id="journey-title">Mein Weg in die IT</h2>
+        </div>
+        <p>
+          Technische Praxis wächst mit Erfahrung.
+          <br />
+          Und mit der Bereitschaft, dazuzulernen.
+        </p>
+      </div>
+      <div class="journey-grid">
+        <div class="journey-column">
+          <h3>Praktische Erfahrung</h3>
+          {experience.map((item) => (
+            <article class="timeline-item">
+              <p class="timeline-date">{item.period}</p>
+              <h4>{item.title}</h4>
+              <p class="organization">
+                {item.organization}, {item.location}
+              </p>
+              <p>{item.description}</p>
+            </article>
+          ))}
+        </div>
+        <div class="journey-column">
+          <h3>Schule & Berufsvorbereitung</h3>
+          {education.map((item) => (
+            <article class="timeline-item">
+              {item.period && <p class="timeline-date">{item.period}</p>}
+              <h4>{item.title}</h4>
+              <p class="organization">{item.organization}</p>
+              {item.description && <p>{item.description}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="kontakt" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <div>
+          <p class="section-kicker">Der nächste Schritt</p>
+          <h2 id="contact-title">
+            Lassen Sie uns
+            <br />
+            ins Gespräch kommen.
+          </h2>
+          <p>
+            Sie möchten mich kennenlernen oder über eine
+            <br class="desktop-break" /> Ausbildung in der Systemintegration sprechen?
+          </p>
+          <a class="contact-email" href={`mailto:${person.email}`}>
+            {person.email}
+            <Icon name="external" />
+          </a>
+          <div class="contact-actions">
+            <button class="copy-email" type="button" data-email={person.email} hidden>
+              <Icon name="copy" />
+              <span>E-Mail kopieren</span>
+            </button>
+            <span class="copy-status" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="contact-details">
+          <span class="contact-mark" aria-hidden="true">
+            rs.
+          </span>
+          <a href={`tel:${person.phoneHref}`}>{person.phone}</a>
+          <p>{person.location}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script>
+    import '../scripts/interactions';
+    const copyButton = document.querySelector<HTMLButtonElement>('.copy-email');
+    const copyStatus = document.querySelector<HTMLElement>('.copy-status');
+    if (copyButton && copyStatus && navigator.clipboard) {
+      copyButton.hidden = false;
+      copyButton.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(copyButton.dataset.email ?? '');
+          copyStatus.textContent = 'E-Mail-Adresse kopiert.';
+        } catch {
+          copyStatus.textContent = 'Bitte die E-Mail-Adresse direkt markieren und kopieren.';
+        }
+      });
+    }
+  </script>
+</Layout>

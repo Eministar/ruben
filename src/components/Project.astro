@@ -1,0 +1,83 @@
+---
+import type { projects } from '../content/portfolio';
+import RackServer from './RackServer.astro';
+interface Props {
+  project: (typeof projects)[number];
+  featured?: boolean;
+}
+const { project, featured = false } = Astro.props;
+---
+
+<article class:list={['project', { featured }]} id={project.id}>
+  <div class="project-stage">
+    <div class="project-meta">
+      <span>{project.kind}</span>
+      <span>{project.period}</span>
+    </div>
+    {featured ? (
+      <div class="nero-stage">
+        <div class="nero-identity">
+          <span class="project-context">Entwicklung im laufenden Projekt</span>
+          <h3>{project.name}</h3>
+          <p>
+            Eine Spielwelt.
+            <br />
+            Echte Systemanforderungen.
+          </p>
+          <div class="nero-architecture" aria-label="Technischer Kontext">
+            <span>Firewall</span>
+            <i aria-hidden="true"></i>
+            <span>Loadbalancing</span>
+            <i aria-hidden="true"></i>
+            <span>Cache</span>
+          </div>
+        </div>
+        <div class="nero-scale">
+          <div class="connection-matrix" aria-hidden="true">
+            {Array.from({ length: 100 }, () => (
+              <span></span>
+            ))}
+          </div>
+          <div class="scale-number">
+            <span>bis zu</span>400<span>gleichzeitige Nutzer</span>
+          </div>
+        </div>
+      </div>
+    ) : (
+      <div class="hosting-stage">
+        <div>
+          <span class="project-context">Remoteverwaltung & Fehleranalyse</span>
+          <h3>{project.name}</h3>
+          <p>{project.headline}</p>
+        </div>
+        <RackServer />
+      </div>
+    )}
+  </div>
+  <div class="project-content">
+    <div class="project-intro">
+      <span class="project-small-label">Der Kontext</span>
+      <p>{project.summary}</p>
+    </div>
+    <div class="project-detail">
+      <details class="case-study">
+        <summary>
+          <span>Einblick ins Projekt</span>
+          <span class="details-symbol" aria-hidden="true"></span>
+        </summary>
+        <div class="case-study-content">
+          <h4>Meine Rolle</h4>
+          <p>{project.role}</p>
+          <h4>Technischer Kontext</h4>
+          <p>{project.challenge}</p>
+          <p class="project-location">Projektstandort: {project.location}</p>
+        </div>
+      </details>
+      <ul class="technologies" aria-label="Technologien und Themen">
+        {project.technologies.map((tech) => (
+          <li>{tech}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,47 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { legal } from '../content/legal';
+const sections = [
+  { id: 'anbieter', label: 'Anbieter' },
+  { id: 'kontakt', label: 'Kontakt' },
+  { id: 'angebot', label: 'Dieses Portfolio' },
+];
+---
+
+<LegalLayout
+  title="Impressum"
+  description="Anbieterinformationen und Kontakt für das persönliche Portfolio von Ruben Schultka."
+  sections={sections}
+>
+  <section id="anbieter">
+    <h2>Anbieter</h2>
+    <address>
+      {legal.name}
+      <br />
+      {legal.street}
+      <br />
+      {legal.city}
+      <br />
+      {legal.country}
+    </address>
+  </section>
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a>
+      <br />
+      Telefon: <a href={`tel:${legal.phoneHref}`}>{legal.phone}</a>
+    </p>
+  </section>
+  <section id="angebot">
+    <h2>Dieses Portfolio</h2>
+    <p>
+      Diese Website stellt meine Projekte, praktischen Erfahrungen und meinen beruflichen Weg in die
+      Systemintegration vor.
+    </p>
+    <p>
+      Informationen zum Umgang mit personenbezogenen Daten finden Sie in der{' '}
+      <a href="/datenschutz/">Datenschutzerklärung</a>.
+    </p>
+  </section>
+</LegalLayout>

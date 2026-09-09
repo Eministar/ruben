@@ -1,0 +1,35 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+interface Props {
+  title: string;
+  description: string;
+  sections: { id: string; label: string }[];
+}
+const { title, description, sections } = Astro.props;
+---
+
+<Layout title={`${title} — Ruben Schultka`} description={description}>
+  <Header />
+  <main class="container legal-main" id="inhalt">
+    <a class="back-link" href="/">
+      ← Zurück zum Portfolio
+    </a>
+    <div class="legal-heading">
+      <h1>{title}</h1>
+      <p>{description}</p>
+    </div>
+    <div class="legal-grid">
+      <nav class="legal-nav" aria-label="Auf dieser Seite">
+        {sections.map((section) => (
+          <a href={`#${section.id}`}>{section.label}</a>
+        ))}
+      </nav>
+      <div class="legal-content">
+        <slot />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

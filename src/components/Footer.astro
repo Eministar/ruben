@@ -1,0 +1,24 @@
+---
+const home = Astro.url.pathname === '/';
+---
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <a class="footer-name" href={home ? '#start' : '/'}>
+      Ruben Schultka<span aria-hidden="true">↗</span>
+    </a>
+    <p>
+      Systemintegration & Entwicklung
+      <br />
+      Berlin, Deutschland
+    </p>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {new Date().getFullYear()} Ruben Schultka</p>
+    <nav aria-label="Rechtliche Informationen">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+      <a href={home ? '#start' : '/'}>{home ? 'Nach oben ↑' : 'Zur Startseite ↗'}</a>
+    </nav>
+  </div>
+</footer>

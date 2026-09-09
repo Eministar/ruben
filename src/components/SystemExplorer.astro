@@ -1,0 +1,126 @@
+---
+const fields = [
+  {
+    key: 'development',
+    name: 'Entwicklung',
+    heading: 'Die Software, die darauf läuft.',
+    text: 'Entwicklung mit Lua sowie HTML, CSS, JavaScript und Vue.js im Nero-V-Projekt.',
+    stack: 'Lua / JavaScript / Vue.js',
+  },
+  {
+    key: 'network',
+    name: 'Infrastruktur',
+    heading: 'Die Verbindungen dazwischen.',
+    text: 'Firewalls, Loadbalancing und Cache-Server gehören zum technischen Umfeld von Nero-V.',
+    stack: 'Firewall / Loadbalancing / Cache',
+  },
+  {
+    key: 'operations',
+    name: 'Betrieb',
+    heading: 'Das System hinter der Oberfläche.',
+    text: 'Rack-Server aus der Ferne verwalten, Fehler analysieren und im 1st- und 2nd-Level-Support unterstützen.',
+    stack: 'IPMI / SSH / Servermanagement',
+  },
+];
+---
+
+<section
+  class="system-explorer"
+  data-active="development"
+  aria-label="Meine technischen Arbeitsfelder"
+>
+  <div class="explorer-top">
+    <span>Ein Blick unter die Oberfläche</span>
+    <span class="drawing-marker" aria-hidden="true">
+      +
+    </span>
+  </div>
+  <div class="explorer-controls-slot">
+    <div class="explorer-controls" role="group" aria-label="Arbeitsfeld auswählen" hidden>
+      {fields.map((field, i) => (
+        <button
+          type="button"
+          data-field={field.key}
+          aria-pressed={i === 0}
+          aria-controls="field-description"
+        >
+          {field.name}
+          <span aria-hidden="true">↗</span>
+        </button>
+      ))}
+    </div>
+  </div>
+  <div class="technical-stage" aria-hidden="true">
+    <svg viewBox="0 0 700 310" fill="none" class="workbench-drawing">
+      <defs>
+        <pattern id="workbench-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path d="M24 0H0v24" stroke="#c4cabe" stroke-width=".6" />
+        </pattern>
+      </defs>
+      <rect width="700" height="310" fill="url(#workbench-grid)" opacity=".48" />
+      <g class="drawing-lines" stroke="#a7b0a6" stroke-width="1">
+        <path d="M25 262h650M52 32v249M648 32v249" />
+        <path d="m206 163 86 42m187-95-80 38" stroke-dasharray="4 5" />
+        <path d="M203 274h155m128-228h110" />
+        <path d="m203 271 0 6m155-6v6m128-234v6m110-6v6" />
+      </g>
+      <g class="drawing-layer layer-development" stroke="#244aca" stroke-width="1.5">
+        <path d="m77 114 124-60 135 66-124 61z" fill="#f8faf5" />
+        <path d="m77 114 0 80 135 67v-80z" fill="#d8e0d5" />
+        <path d="m212 181 124-61v80l-124 61z" fill="#e7ecdf" />
+        <path d="m97 132 96 47v54l-96-47z" fill="#244aca" />
+        <path d="m113 157-8 3 8 11m48 2 9 11-9 2m-24-22-6 22" stroke="#e9f0fd" stroke-width="2" />
+        <path d="m225 196 94-46m-94 59 94-46m-94 59 64-31" opacity=".45" />
+      </g>
+      <g class="drawing-layer layer-network" stroke="#244aca" stroke-width="1.5">
+        <path d="m266 145 123-60 138 68-124 59z" fill="#edf2e7" />
+        <path d="M266 145v35l137 68v-36z" fill="#dce5d8" />
+        <path d="m403 212 124-59v35l-124 60z" fill="#cbd7c7" />
+        <path d="m344 133 42-20 50 24-43 21z" fill="#244aca" />
+        <path d="m365 143-37 18 37 19m28-22 39 19 38-18m-83-46 0-15" />
+        <path
+          d="m319 157 9-4 9 4-9 5zm37 19 9-4 9 4-9 5zm67-3 9-4 9 4-9 5zm38-18 9-4 9 4-9 5z"
+          fill="#244aca"
+        />
+        <path d="m282 169 52 26m-52-17 52 26" stroke="#7b957e" />
+      </g>
+      <g class="drawing-layer layer-operations" stroke="#244aca" stroke-width="1.5">
+        <path d="m443 79 79-38 100 49-79 38z" fill="#f8faf5" />
+        <path d="M443 79v133l100 49V128z" fill="#d4dfd0" />
+        <path d="m543 128 79-38v133l-79 38z" fill="#e7ecdf" />
+        {[0, 1, 2, 3].map((i) => (
+          <g transform={`translate(0 ${i * 28})`}>
+            <path d="m455 101 76 37v19l-76-37z" fill="#244aca" />
+            <path d="m464 112 38 18" stroke="#cbd6f6" />
+            <circle cx="519" cy="141" r="2" fill="#d7ead0" stroke="none" />
+          </g>
+        ))}
+        <path
+          d="m556 144 52-25m-52 36 52-25m-52 36 52-25m-52 36 52-25m-52 36 52-25m-52 36 52-25m-52 36 52-25"
+          opacity=".35"
+        />
+      </g>
+      <g fill="#53604f" font-size="10" font-family="Manrope Variable, sans-serif">
+        <text x="80" y="290">
+          Software
+        </text>
+        <text x="362" y="290">
+          Netzwerk
+        </text>
+        <text x="551" y="290">
+          Server
+        </text>
+      </g>
+    </svg>
+  </div>
+  <div class="field-description" id="field-description" aria-live="polite" aria-atomic="true">
+    {fields.map((field, i) => (
+      <div data-description={field.key} hidden={i !== 0}>
+        <h3>{field.heading}</h3>
+        <p>{field.text}</p>
+        <span>{field.stack}</span>
+      </div>
+    ))}
+  </div>
+  <p class="explorer-caption">Arbeitsfelder aus meinen Projekten. Schematisch dargestellt.</p>
+</section>

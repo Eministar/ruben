@@ -1,0 +1,30 @@
+---
+const links = [
+  { href: '#projekte', label: 'Projekte' },
+  { href: '#profil', label: 'Über mich' },
+  { href: '#werdegang', label: 'Werdegang' },
+];
+const home = Astro.url.pathname === '/';
+const target = (hash: string) => (home ? hash : `/${hash}`);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={target('#start')} class="wordmark" aria-label="Ruben Schultka – Startseite">
+      <span class="monogram" aria-hidden="true">
+        rs<span>.</span>
+      </span>
+      <span>Ruben Schultka</span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      {links.map((link) => (
+        <a href={target(link.href)} data-section={link.href.slice(1)}>
+          {link.label}
+        </a>
+      ))}
+      <a href={target('#kontakt')} class="nav-contact" data-section="kontakt">
+        Kontakt <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  </div>
+</header>

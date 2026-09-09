@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Seite nicht gefunden — Ruben Schultka"
+  description="Diese Seite existiert nicht. Zurück zu den Projekten und dem Portfolio von Ruben Schultka."
+>
+  <Header />
+  <main class="container legal-main" id="inhalt">
+    <div class="legal-heading">
+      <p class="section-kicker">Fehler 404</p>
+      <h1>Hier geht es nicht weiter.</h1>
+      <p>Die aufgerufene Seite existiert nicht oder wurde verschoben.</p>
+      <a class="button" href="/">
+        Zurück zum Portfolio <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,76 @@
+---
+import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
+import displayFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
+import '../styles/global.css';
+import { person } from '../content/portfolio';
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = 'Ruben Schultka — Systemintegration & Entwicklung',
+  description = person.description,
+} = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const socialImage = Astro.site ? new URL('/social.png', Astro.site).href : '/social.png';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  description: person.role,
+  ...(canonical ? { url: canonical } : {}),
+  homeLocation: { '@type': 'Place', name: person.location },
+  knowsAbout: [
+    'Systemintegration',
+    'Servermanagement',
+    'Lua',
+    'JavaScript',
+    'Vue.js',
+    'IT-Support',
+  ],
+};
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#eeeee8" />
+    <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Ruben Schultka. Angehender Fachinformatiker für Systemintegration. Berlin."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')}
+    ></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#inhalt">
+      Zum Inhalt springen
+    </a>
+    <slot />
+  </body>
+</html>

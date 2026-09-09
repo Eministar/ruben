@@ -1,0 +1,28 @@
+<figure
+  class="rack-figure"
+  aria-label="Abstrakte Illustration eines Rack-Servers mit IPMI- und SSH-Zugriff"
+>
+  <div class="rack-caption">
+    <span>Remoteverwaltung</span>
+    <span>IPMI / SSH</span>
+  </div>
+  <div class="rack" aria-hidden="true">
+    {[0, 1, 2, 3].map((row) => (
+      <div class="rack-unit">
+        <span class="rack-handle"></span>
+        <div class="rack-slots">
+          {Array.from({ length: 8 }, () => (
+            <i></i>
+          ))}
+        </div>
+        <span class="rack-led"></span>
+        <span class="rack-port"></span>
+        <span class="rack-handle"></span>
+        <span class="rack-unit-label">{String(row + 1).padStart(2, '0')}</span>
+      </div>
+    ))}
+  </div>
+  <figcaption>
+    Rack-Server <span>Illustration</span>
+  </figcaption>
+</figure>
