@@ -2,6 +2,8 @@
 import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 import displayFont from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
 import '../styles/global.css';
+import '../styles/theme-controls.css';
+import '../styles/mobile-refinement.css';
 import { person } from '../content/portfolio';
 interface Props {
   title?: string;
@@ -37,6 +39,22 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#eeeee8" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      // Apply the explicit preference before the first paint. No storage is required.
+      try {
+        const preference = window.localStorage.getItem('ruben-theme');
+        if (preference === 'light' || preference === 'dark')
+          document.documentElement.dataset.theme = preference;
+      } catch {
+        /* System preference remains active when storage is unavailable. */
+      }
+      const dark =
+        document.documentElement.dataset.theme === 'dark' ||
+        (!document.documentElement.dataset.theme &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#151c1a' : '#eeeee8';
+    </script>
     <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
@@ -72,5 +90,10 @@ const structuredData = {
       Zum Inhalt springen
     </a>
     <slot />
+    <script>
+      import '../scripts/theme';
+      import '../scripts/mobile';
+      import '../scripts/easter-eggs';
+    </script>
   </body>
 </html>

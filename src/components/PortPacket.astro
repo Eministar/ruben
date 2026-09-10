@@ -1,0 +1,38 @@
+<div class="packet-entry">
+  <button
+    type="button"
+    class="packet-trigger"
+    aria-label="Überraschung auf Port 22 öffnen"
+    aria-haspopup="dialog"
+    hidden
+  >
+    :22
+  </button>
+</div>
+<dialog
+  id="packet-dialog"
+  class="packet-dialog"
+  aria-labelledby="packet-title"
+  aria-describedby="packet-message"
+>
+  <form method="dialog">
+    <button class="packet-close" aria-label="Überraschung schließen" autofocus>
+      ×
+    </button>
+  </form>
+  <span class="packet-label">Paket erfolgreich zugestellt</span>
+  <h2 id="packet-title">
+    Kein Root-Zugriff.
+    <br />
+    Aber ein guter Fund.
+  </h2>
+  <p id="packet-message">
+    Port 22 ist der Standardport für SSH. Hier führt er ausnahmsweise zu einer kleinen Pause.
+  </p>
+  <p class="packet-joke">
+    Es gibt 10 Arten von Menschen:
+    <br />
+    Die, die Binärzahlen verstehen. Und die anderen.
+  </p>
+  <span class="packet-footnote">Dieses Paket bleibt im Browser. Versprochen.</span>
+</dialog>

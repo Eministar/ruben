@@ -37,7 +37,15 @@ import { person, projects, skills, experience, education } from '../content/port
             Meine Projekte entdecken <Icon />
           </a>
         </div>
-        <SystemExplorer />
+        <details class="mobile-disclosure explorer-disclosure" data-mobile-disclosure>
+          <summary>
+            <span>Meine Arbeitsfelder entdecken</span>
+            <span class="details-symbol" aria-hidden="true"></span>
+          </summary>
+          <div class="disclosure-body">
+            <SystemExplorer />
+          </div>
+        </details>
       </div>
       <div class="hero-bottom">
         <p>Praktische Erfahrung. Echte Systeme.</p>
@@ -105,15 +113,20 @@ import { person, projects, skills, experience, education } from '../content/port
         </div>
         <div class="skills-grid">
           {skills.map((group) => (
-            <section class="skill-group">
-              <h4>{group.title}</h4>
-              <p>{group.description}</p>
-              <ul>
-                {group.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            </section>
+            <details class="skill-group mobile-disclosure" data-mobile-disclosure>
+              <summary>
+                <h4>{group.title}</h4>
+                <span class="details-symbol" aria-hidden="true"></span>
+              </summary>
+              <div class="disclosure-body">
+                <p>{group.description}</p>
+                <ul>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </details>
           ))}
         </div>
         <div class="language-note">

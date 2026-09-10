@@ -65,7 +65,7 @@ private/profile.json     Nur lokal: vollständige Kontaktdaten
 - Englisch: „Obere Mittelstufe“, keine abgeleitete CEFR-Stufe.
 - Das Geburtsdatum bleibt ausschließlich in `private/profile.json`. Dieser Ordner ist von Git ausgeschlossen, wird nirgends importiert und nicht nach `dist/` kopiert. Die Anschrift wurde auf ausdrücklichen Wunsch nach einem Impressum in `src/content/legal.ts` aufgenommen und erscheint ausschließlich in Impressum und Datenschutz. Die Portfolio-Startseite zeigt weiterhin nur Berlin.
 - Ein Kontaktformular ist nicht notwendig: E-Mail, Telefon und eine progressive Kopierfunktion sind direkt nutzbar. Keine externen Tracking- oder Schriftanfragen.
-- Die Navigation bleibt auch mobil direkt sichtbar; kein zusätzliches Menü oder Menü-JavaScript ist erforderlich.
+- Mobil wird die Navigation über einen beschrifteten Menübutton geöffnet. Escape und Linkauswahl schließen sie wieder; ohne JavaScript bleiben die Links sichtbar. Arbeitsfelder und Kenntnisgruppen sind mobil native, zunächst geschlossene Details; auf dem Desktop bleiben sie offen. Größere mobile Fließtexte und reduzierte Nebenbeschriftungen entzerren die Seite.
 - Eine Druckansicht ist enthalten. Sie enthält die öffentlichen Angaben und dient nicht als vollständiger privater Lebenslauf.
 
 ## Deployment
@@ -85,6 +85,14 @@ Die Domain im Beispiel muss durch die eigene ersetzt werden. Ohne konfigurierte 
 Die Anwendung setzt Deployment im Domainwurzelverzeichnis voraus. HTTPS beim Host aktivieren. Die Hosting-Konfiguration sollte komprimierte Auslieferung und langfristiges Caching für gehashte `/_astro/`-Assets verwenden. HTML beim erneuten Deployment aktualisieren lassen.
 
 ## Gestaltung und Zugänglichkeit
+
+### Farbschema und Easter Eggs
+
+Sonne, Mond und Computer bilden eine kompakte Symbolauswahl für Hell, Dunkel und System. Jeder Button hat einen Screenreader-Namen, einen Tooltip und einen mit `aria-pressed` markierten Auswahlzustand. Die Symbole folgen dem vorhandenen SVG-Linienstil.
+
+Der Standardmodus **System** folgt `prefers-color-scheme` einschließlich laufender Änderungen. Die Kopfzeile bietet **Hell**, **Dunkel** und **System**. Nur eine explizite manuelle Auswahl wird unter `ruben-theme` im Local Storage gespeichert; „System“ entfernt sie. Ein kleines Head-Script setzt die Auswahl vor dem ersten Rendern, damit kein falsches Farbschema aufblitzt. Ohne JavaScript funktioniert das Systemfarbschema über CSS. Gesperrter Speicher verhindert die Bedienung nicht. Die Druckansicht bleibt hell. Die Datenschutzerklärung beschreibt die lokale Speicherung.
+
+Zwei dezente Easter Eggs: eine Entwicklernachricht in der Konsole und der kleine `:22`-Button am Ende des Impressums. Dieser öffnet einen nativen, per Escape schließbaren Dialog mit einem SSH-/Binärzahlen-Augenzwinkern. Keine Serveranfrage, verstecktes Tracking oder globale Tastaturabkürzung.
 
 Die Revision verbindet eine helle technische Arbeitsfläche mit Graphit, Kobalt und einer dunklen Nero-V-Projektfläche. Barlow Condensed trägt Namen und Projekttitel, Manrope die Texte. Der Arbeitsfelder-Explorer lässt Entwicklung, Infrastruktur und Betrieb gezielt hervorheben und erläutert den Bezug zu den tatsächlichen Projekten. Das auditierte Bewegungskonzept ist in `plans/README.md` dokumentiert.
 

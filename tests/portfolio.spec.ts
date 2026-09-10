@@ -12,6 +12,7 @@ for (const width of [360, 390, 768, 1024, 1440, 1920]) {
     expect(
       await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
     ).toBeTruthy();
+    if (width <= 600) await page.getByRole('button', { name: 'Menü öffnen' }).click();
     await page.getByRole('link', { name: 'Projekte', exact: true }).click();
     await expect(page).toHaveURL(/#projekte$/);
     await page.locator('#nero-v summary').click();
@@ -79,6 +80,7 @@ for (const path of ['/impressum/', '/datenschutz/']) {
       (await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze())
         .violations,
     ).toEqual([]);
+    await page.getByRole('button', { name: 'Menü öffnen' }).click();
     await page.getByRole('link', { name: 'Projekte', exact: true }).click();
     await expect(page).toHaveURL(/\/#projekte$/);
   });
