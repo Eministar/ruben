@@ -30,6 +30,7 @@ const { title, description, sections } = Astro.props;
         <slot />
       </div>
     </div>
+    <slot name="page-end" />
   </main>
   <Footer />
 </Layout>

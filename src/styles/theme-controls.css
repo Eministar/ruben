@@ -39,16 +39,35 @@
 }
 .packet-entry {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  margin-top: 32px;
+  gap: 2px;
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.packet-entry:has(.packet-trigger[hidden]) {
+  display: none;
+}
+.packet-signature {
+  color: var(--muted);
+  font:
+    11px ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
 }
 .packet-trigger {
-  min-width: 34px;
-  min-height: 34px;
-  padding: 5px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
   color: var(--muted);
-  font: inherit;
-  border: 1px solid var(--line);
+  font:
+    12px ui-monospace,
+    SFMono-Regular,
+    Consolas,
+    monospace;
+  border: 1px solid transparent;
   border-radius: 3px;
   background: transparent;
   cursor: pointer;
@@ -56,6 +75,7 @@
 .packet-trigger:hover {
   color: var(--text);
   border-color: var(--muted);
+  background: var(--surface);
 }
 .packet-dialog {
   width: min(470px, calc(100% - 36px));

@@ -88,6 +88,8 @@ Die Anwendung setzt Deployment im Domainwurzelverzeichnis voraus. HTTPS beim Hos
 
 ### Farbschema und Easter Eggs
 
+Die Scrollbar folgt ebenfalls dem aktiven Farbschema, einschließlich Systemmodus. Native Scrollfunktion und Breite bleiben erhalten; hoher Kontrast nutzt die Systemfarben. Auf Geräten mit automatisch ausgeblendeten Overlay-Scrollbars entscheidet weiterhin das Betriebssystem über deren Sichtbarkeit. Es gibt keinen Besucherzähler und keine Statistik- oder Werbeeinwilligung.
+
 Sonne, Mond und Computer bilden eine kompakte Symbolauswahl für Hell, Dunkel und System. Jeder Button hat einen Screenreader-Namen, einen Tooltip und einen mit `aria-pressed` markierten Auswahlzustand. Die Symbole folgen dem vorhandenen SVG-Linienstil.
 
 Der Standardmodus **System** folgt `prefers-color-scheme` einschließlich laufender Änderungen. Die Kopfzeile bietet **Hell**, **Dunkel** und **System**. Nur eine explizite manuelle Auswahl wird unter `ruben-theme` im Local Storage gespeichert; „System“ entfernt sie. Ein kleines Head-Script setzt die Auswahl vor dem ersten Rendern, damit kein falsches Farbschema aufblitzt. Ohne JavaScript funktioniert das Systemfarbschema über CSS. Gesperrter Speicher verhindert die Bedienung nicht. Die Druckansicht bleibt hell. Die Datenschutzerklärung beschreibt die lokale Speicherung.
